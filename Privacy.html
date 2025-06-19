@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Dunklin R-V Performing Arts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d10000;
+            --primary-dark: #990000;
+            --primary-light: #ff3333;
+            --dark: #1a1a1a;
+            --light: #f8f8f8;
+        }
+        
+        body {
+            background-image: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), url('https://i.imgur.com/Dxkcswx.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .faq-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .carousel-item {
+            display: none;
+        }
+
+        .carousel-item.active {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .floating-notes {
+            position: absolute;
+            opacity: 0.2;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        section {
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="bg-black/90 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+               <div class="flex items-center space-x-4">
+                    <i class="fas fa-music text-2xl text-white"></i>
+                    <a href="index.html" class="font-bold text-xl bg-gradient-to-r from-red-400 to-red-700 bg-clip-text text-transparent">Dunklin R-V Performing Arts</a>
+                    <i class="fas fa-theater-masks text-2xl text-white ml-2"></i>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Home</a>
+                    <a href="Events.html" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Events</a>
+                    <a href="Team.html" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Team</a>
+                    <a href="Resources.html" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Resources</a>
+                </div>
+                <button class="md:hidden focus:outline-none text-white" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden py-4" id="mobile-menu">
+                <a href="index.html" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Home</a>
+                <a href="Events.html" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Events</a>
+                <a href="Team.html" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Team</a>
+                <a href="Resources.html" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+        <!-- Privacy Policy Section -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl font-bold text-center mb-12">
+                <span class="text-white">Privacy Policy</span>
+            </h1>
+            
+            <div class="space-y-8 text-gray-300">
+                <p class="text-lg font-semibold">Last Updated: 06/19/25</p>
+                
+                <p>The Dunklin R-V Performing Arts website, operated by Andrew Brock, Director of Choirs and Theater, is committed to respecting and protecting the privacy of all visitors.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">Purpose of This Website</h2>
+                <p>This website serves as the official hub for all choir, theater, and band-related activities at Dunklin R-V School District. It provides updates, event information, downloadable forms, ticket sales, and contact information for faculty.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">Personal Information</h2>
+                <p>We do not directly collect personal information through this website. However, certain features or services may involve third-party platforms that collect user information.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">Ticket Purchases</h2>
+                <p>All ticket sales are processed through Eventbrite. Eventbrite may collect personal details such as name, email address, and payment information. Please refer to Eventbrite's own privacy policy for more details.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">Forms and Submissions</h2>
+                <p>The site may include downloadable or Google Forms used by students and parents. Any information submitted via those forms is handled according to the terms and privacy policies of the respective platforms.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">Contact Options</h2>
+                <p>Visitors may use the Team directory or quick contact links to reach out to faculty members. Any information submitted via email or other means is voluntarily provided by the user.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">Embedded Social Media</h2>
+                <p>This website includes embedded social media feeds and links from:</p>
+                <ul class="list-disc pl-6 mt-2 space-y-1">
+                    <li>Facebook (Choir and Theater)</li>
+                    <li>Instagram (Theater)</li>
+                    <li>TikTok (Theater)</li>
+                </ul>
+                <p class="mt-2">These platforms may collect data through cookies or other technologies. Please refer to their respective privacy policies to understand how your information is used.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">Analytics and Cookies</h2>
+                <p>This website does not currently use cookies or any analytics tracking tools. You may browse the site without concern for data tracking or behavioral monitoring.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">Children's Privacy</h2>
+                <p>The site is intended to serve as an informational resource for students, parents, and the community. We do not knowingly collect personal data from children under the age of 13. Any communication or submissions from minors should be supervised by a parent or guardian.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">External Links</h2>
+                <p>Links to external websites (including ticketing services, social platforms, and hosted forms) are provided for convenience. We are not responsible for the content, security, or privacy practices of these external sites.</p>
+                
+                <h2 class="text-2xl font-bold mt-8 mb-4 text-white">Contact Information</h2>
+                <p>If you have any questions about this privacy policy or how information is handled, please contact:</p>
+                <div class="mt-4 pl-4">
+                    <p>Andrew Brock</p>
+                    <p>Director of Choirs and Theater</p>
+                    <p>Herculaneum High School</p>
+                    <p>Email: abrock@dunklin.k12.mo.us</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Dunklin R-V Performing Arts</h3>
+                    <p class="text-gray-400 mb-4">Inspiring creativity, building community, and developing artistic excellence through choir, theater, and band.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="index.html#social-feed" class="text-gray-400 hover:text-white transition duration-300">Live Social Feed</a></li>
+                        <li><a href="Events.html" class="text-gray-400 hover:text-white transition duration-300">Upcoming Events</a></li>
+                        <li><a href="Team.html" class="text-gray-400 hover:text-white transition duration-300">Meet the Team</a></li>
+                        <li><a href="Resources.html" class="text-gray-400 hover:text-white transition duration-300">Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <p class="text-gray-400 mb-2 flex items-center">
+                        <i class="fas fa-map-marker-alt mr-2"></i>1 Blackcat Dr, Herculaneum, MO
+                    </p>
+                    <p class="text-gray-400 mb-2 flex items-center">
+                        <i class="fas fa-phone mr-2"></i>(636) 479-5200 ext. 4119
+                    </p>
+                    <p class="text-gray-400 mb-2 flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>abrock@dunklin.k12.mo.us
+                    </p>
+                    <p class="text-gray-400 mt-4 text-sm">
+                        <i class="fas fa-clock mr-2"></i>Office Hours: M-F 10:00 AM - 11:00 AM
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2025 Dunklin R-V Performing Arts. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="Privacy.html" class="text-gray-400 hover:text-white text-sm mr-4">Privacy Policy</a>
+                    <a href="FAQ.html" class="text-gray-400 hover:text-white text-sm">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href').startsWith('index.html#')) {
+                    e.preventDefault();
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
