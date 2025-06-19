@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Dunklin R-V Performing Arts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d10000;
+            --primary-dark: #990000;
+            --primary-light: #ff3333;
+            --dark: #1a1a1a;
+            --light: #f8f8f8;
+        }
+        
+        body {
+            background-image: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), url('https://i.imgur.com/Dxkcswx.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .faq-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="bg-black/90 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-music text-2xl text-white"></i>
+                    <span class="font-bold text-xl bg-gradient-to-r from-red-400 to-red-700 bg-clip-text text-transparent">Dunklin R-V Performing Arts</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#home" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Home</a>
+                    <a href="index.html#events" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Events</a>
+                    <a href="index.html#team" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Team</a>
+                    <a href="index.html#resources" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Resources</a>
+                </div>
+                <button class="md:hidden focus:outline-none text-white" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden py-4" id="mobile-menu">
+                <a href="index.html#home" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Home</a>
+                <a href="index.html#events" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Events</a>
+                <a href="index.html#team" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Team</a>
+                <a href="index.html#resources" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FAQ Section -->
+    <section class="py-16 px-4">
+        <div class="container mx-auto max-w-4xl">
+            <h1 class="text-4xl font-bold text-center mb-12">
+                <span class="text-white">Frequently Asked Questions</span>
+            </h1>
+            
+            <div class="space-y-4">
+                <!-- FAQ Item -->
+                <div class="faq-item rounded-lg p-6 cursor-pointer" onclick="this.querySelector('.faq-answer').classList.toggle('hidden')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-semibold">How do I join the choir/band/theater program?</h3>
+                        <i class="fas fa-chevron-down text-red-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-300">
+                        <p>Students can join our programs during registration periods at the start of each semester. Auditions are only required for Varsity Mixed Choir and Concert Choir. The band and theater programs have no audition requirements. </p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item -->
+                <div class="faq-item rounded-lg p-6 cursor-pointer" onclick="this.querySelector('.faq-answer').classList.toggle('hidden')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-semibold">What are the costs associated with participation?</h3>
+                        <i class="fas fa-chevron-down text-red-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-300">
+                        <p>Costs vary by program. Choir requires a t-shirt fee for Varsity Mixed Choir as it's their uniform. Band has instrument fees and uniform fees that vary. Theater has no class fees but may require costume contributions for productions. Need based exceptions are available for all programs.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item -->
+                <div class="faq-item rounded-lg p-6 cursor-pointer" onclick="this.querySelector('.faq-answer').classList.toggle('hidden')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-semibold">When are rehearsals and performances scheduled?</h3>
+                        <i class="fas fa-chevron-down text-red-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-300">
+                        <p>Regular class occurs during school hours. Additional rehearsals are typically scheduled during CAT Time. Performances are in the evenings on weekdays for music while theater usually goes into the weekend. A full calendar is available on our <a href="index.html#events" class="text-red-400 hover:underline">Events page</a>.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item -->
+                <div class="faq-item rounded-lg p-6 cursor-pointer" onclick="this.querySelector('.faq-answer').classList.toggle('hidden')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-semibold">How can parents get involved?</h3>
+                        <i class="fas fa-chevron-down text-red-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-300">
+                        <p>We welcome parent volunteers for costume construction, set building, concert ushering, fundraising, and trip chaperoning. Please contact the program director to ask for specific details on events needing volunteers.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item -->
+                <div class="faq-item rounded-lg p-6 cursor-pointer" onclick="this.querySelector('.faq-answer').classList.toggle('hidden')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-semibold">What performance opportunities are available?</h3>
+                        <i class="fas fa-chevron-down text-red-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-300">
+                        <p>Students can participate in concerts, musicals, plays, marching band shows, jazz band performances, solo/ensemble festivals, and state competitions. Advanced students may audition for honor ensembles and all-state programs.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item -->
+                <div class="faq-item rounded-lg p-6 cursor-pointer" onclick="this.querySelector('.faq-answer').classList.toggle('hidden')">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-xl font-semibold">How do I purchase tickets for performances?</h3>
+                        <i class="fas fa-chevron-down text-red-500 transition-transform duration-300"></i>
+                    </div>
+                    <div class="faq-answer hidden mt-4 text-gray-300">
+                        <p>Tickets for most events can be purchased at the door with cash or check. For major productions, online ticket sales will be available through our website. Some free performances may require reserved seating tickets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Dunklin R-V Performing Arts</h3>
+                    <p class="text-gray-400 mb-4">Inspiring creativity, building community, and developing artistic excellence through choir, theater, and band.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="index.html#social-feed" class="text-gray-400 hover:text-white transition duration-300">Live Social Feed</a></li>
+                        <li><a href="index.html#events" class="text-gray-400 hover:text-white transition duration-300">Upcoming Events</a></li>
+                        <li><a href="index.html#team" class="text-gray-400 hover:text-white transition duration-300">Meet the Team</a></li>
+                        <li><a href="index.html#resources" class="text-gray-400 hover:text-white transition duration-300">Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <p class="text-gray-400 mb-2 flex items-center">
+                        <i class="fas fa-map-marker-alt mr-2"></i>1 Blackcat Dr, Herculaneum, MO
+                    </p>
+                    <p class="text-gray-400 mb-2 flex items-center">
+                        <i class="fas fa-phone mr-2"></i>(636) 479-5200 ext. 4119
+                    </p>
+                    <p class="text-gray-400 mb-2 flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>abrock@dunklin.k12.mo.us
+                    </p>
+                    <p class="text-gray-400 mt-4 text-sm">
+                        <i class="fas fa-clock mr-2"></i>Office Hours: M-F 10:00 AM - 11:00 AM
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2025 Dunklin R-V Performing Arts. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm mr-4">Privacy Policy</a>
+                    <a href="faq.html" class="text-gray-400 hover:text-white text-sm">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href').startsWith('index.html#')) {
+                    e.preventDefault();
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

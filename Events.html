@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Dunklin R-V Performing Arts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #d10000;
+            --primary-dark: #990000;
+            --primary-light: #ff3333;
+            --dark: #1a1a1a;
+            --light: #f8f8f8;
+        }
+        
+        body {
+            background-image: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), url('https://i.imgur.com/Dxkcswx.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--light);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        
+        .faq-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .carousel-item {
+            display: none;
+        }
+
+        .carousel-item.active {
+            display: block;
+            animation: fadeIn 1s;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+
+        .floating-notes {
+            position: absolute;
+            opacity: 0.2;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        section {
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="bg-black/90 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <i class="fas fa-music text-2xl text-white"></i>
+                    <span class="font-bold text-xl bg-gradient-to-r from-red-400 to-red-700 bg-clip-text text-transparent">Dunklin R-V Performing Arts</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html#home" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Home</a>
+                    <a href="index.html#events" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Events</a>
+                    <a href="index.html#team" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Team</a>
+                    <a href="index.html#resources" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Resources</a>
+                </div>
+                <button class="md:hidden focus:outline-none text-white" id="mobile-menu-button">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+            <!-- Mobile menu -->
+            <div class="md:hidden hidden py-4" id="mobile-menu">
+                <a href="index.html#home" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Home</a>
+                <a href="index.html#events" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Events</a>
+                <a href="index.html#team" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Team</a>
+                <a href="index.html#resources" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Resources</a>
+            </div>
+        </div>
+    </nav>
+
+       <!-- Upcoming Events -->
+    <section id="events" class="py-16 px-4 bg-white bg-opacity-90">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 text-red-800">Upcoming Events</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                <!-- Event Cards -->
+                <div class="event-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="h-40 bg-red-800 flex items-center justify-center relative">
+                        <i class="fas fa-music text-6xl text-white"></i>
+                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white py-1 px-3">
+                            <span class="text-sm font-semibold">Choir Room</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl text-black font-bold">Fall Choir Concert</h3>
+                            <span class="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">Free Admission</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 flex items-center">
+                            <i class="far fa-calendar mr-2"></i>October 25, 2023 | 7:00 PM
+                        </p>
+                        <p class="text-gray-700">Our choir students will perform selections from classical to contemporary repertoire in this annual fall showcase.</p>
+                    </div>
+                </div>
+                
+                <div class="event-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="h-40 bg-red-800 flex items-center justify-center relative">
+                        <i class="fas fa-theater-masks text-6xl text-white"></i>
+                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white py-1 px-3">
+                            <span class="text-sm font-semibold">Auditorium</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl text-black font-bold">One Act Play Competition</h3>
+                            <span class="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">Tickets $5</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 flex items-center">
+                            <i class="far fa-calendar mr-2"></i>November 10-12, 2023
+                        </p>
+                        <p class="text-gray-700">Our theater students compete with their production of "The Laramie Project" at the regional competition.</p>
+                        <button class="mt-4 bg-red-800 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 w-full">
+                            Buy Tickets
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="event-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="h-40 bg-red-800 flex items-center justify-center relative">
+                        <i class="fas fa-drum text-6xl text-white"></i>
+                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white py-1 px-3">
+                            <span class="text-sm font-semibold">Football Field</span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl text-black font-bold">Marching Band Showcase</h3>
+                            <span class="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">Free Admission</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 flex items-center">
+                            <i class="far fa-calendar mr-2"></i>October 30, 2023 | 6:30 PM
+                        </p>
+                        <p class="text-gray-700">The Dunklin Marching Bulldogs present their 2023 competition show "Elements" for the community.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fundraisers Section -->
+            <div class="bg-gray-100 rounded-lg p-8">
+                <h3 class="text-2xl font-bold mb-6 text-red-800">Fundraisers & Special Trips</h3>
+                <div class="space-y-6">
+                    <div class="flex items-start">
+                        <div class="bg-red-800 text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-utensils"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-black font-bold">Dine to Donate - Chipotle</h4>
+                            <p class="text-gray-700">November 5, 4-8 PM | Mention Dunklin Performing Arts when ordering at the Festus Chipotle and 33% of proceeds will be donated.</p>
+                            <button class="mt-2 text-red-800 font-semibold hover:underline">More Details</button>
+                        </div>
+                    </div>
+                    <div class="flex items-start">
+                        <div class="bg-red-800 text-white p-3 rounded-full mr-4">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div>
+                            <h4 class="text-black font-bold">New York Performance Trip</h4>
+                            <p class="text-gray-700">April 2024 | Our top ensembles will travel to New York City to perform at Lincoln Center and attend Broadway shows.</p>
+                            <button class="mt-2 text-red-800 font-semibold hover:underline">Trip Information</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Interactive Calendar -->
+            <div class="mt-12 bg-gray-100 rounded-lg p-8">
+                <h3 class="text-2xl font-bold mb-4 text-red-800">Full Calendar</h3>
+                <div class="bg-white p-4 rounded-lg shadow-inner">
+                    <iframe src="https://calendar.google.com/calendar/embed?src=c_bf1947c0c2a046cdd7a05a715ae10b91a96fbd950fbb548a2ca4260b7e5ada94%40group.calendar.google.com&ctz=America%2FChicago" style="border: 0; width: 100%; min-height: 600px;" frameborder="0" scrolling="no"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-12 px-4">
+        <div class="container mx-auto">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Dunklin R-V Performing Arts</h3>
+                    <p class="text-gray-400 mb-4">Inspiring creativity, building community, and developing artistic excellence through choir, theater, and band.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="index.html#social-feed" class="text-gray-400 hover:text-white transition duration-300">Live Social Feed</a></li>
+                        <li><a href="index.html#events" class="text-gray-400 hover:text-white transition duration-300">Upcoming Events</a></li>
+                        <li><a href="index.html#team" class="text-gray-400 hover:text-white transition duration-300">Meet the Team</a></li>
+                        <li><a href="index.html#resources" class="text-gray-400 hover:text-white transition duration-300">Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Contact</h3>
+                    <p class="text-gray-400 mb-2 flex items-center">
+                        <i class="fas fa-map-marker-alt mr-2"></i>1 Blackcat Dr, Herculaneum, MO
+                    </p>
+                    <p class="text-gray-400 mb-2 flex items-center">
+                        <i class="fas fa-phone mr-2"></i>(636) 479-5200 ext. 4119
+                    </p>
+                    <p class="text-gray-400 mb-2 flex items-center">
+                        <i class="fas fa-envelope mr-2"></i>abrock@dunklin.k12.mo.us
+                    </p>
+                    <p class="text-gray-400 mt-4 text-sm">
+                        <i class="fas fa-clock mr-2"></i>Office Hours: M-F 10:00 AM - 11:00 AM
+                    </p>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400">&copy; 2025 Dunklin R-V Performing Arts. All rights reserved.</p>
+                <div class="mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-white text-sm mr-4">Privacy Policy</a>
+                    <a href="team.html" class="text-gray-400 hover:text-white text-sm">FAQ</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if(this.getAttribute('href').startsWith('index.html#')) {
+                    e.preventDefault();
+                    window.location.href = this.getAttribute('href');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
