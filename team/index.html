@@ -1,285 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team - Dunklin R-V Performing Arts</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="icon" type="image/png" href="/favicon.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary: #d10000;
-            --primary-dark: #990000;
-            --primary-light: #ff3333;
-            --dark: #1a1a1a;
-            --light: #f8f8f8;
-        }
-        
-        body {
-            background-image: linear-gradient(rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.9)), url('https://i.imgur.com/Dxkcswx.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: var(--light);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        
-        .faq-item {
-            background: rgba(255, 255, 255, 0.1);
-            border-left: 4px solid var(--primary);
-            transition: all 0.3s ease;
-        }
-        
-        .faq-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Team - Dunklin R-V Performing Arts</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #d10000;
+      --primary-dark: #990000;
+      --primary-light: #ff3333;
+      --dark: #1a1a1a;
+      --light: #f8f8f8;
+    }
 
-        .carousel-item {
-            display: none;
-        }
+    body {
+      background-image:
+        linear-gradient(rgba(26,26,26,0.9), rgba(26,26,26,0.9)),
+        url('https://i.imgur.com/Dxkcswx.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--light);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
-        .carousel-item.active {
-            display: block;
-            animation: fadeIn 1s;
-        }
+    .nav-link { position: relative; }
+    .nav-link::after {
+      content: ''; position: absolute;
+      width: 0; height: 2px; bottom: -2px; left: 0;
+      background-color: white; transition: width 0.3s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+    section { margin: 2rem 0; }
 
-        @keyframes fadeIn {
-            from {opacity: 0;}
-            to {opacity: 1;}
-        }
+    .team-card {
+      position: relative;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      z-index: 1;
+    }
+    .team-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
 
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+    .team-bio {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: white;
+      color: #333;
+      padding: 1.5rem;
+      overflow-y: auto;
+      z-index: 2;
+    }
 
-        .event-card:hover {
-            transform: scale(1.02);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+    .team-card.expanded {
+      transform: scale(1.1);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      z-index: 10;
+      transform-origin: center top;
+    }
+    .team-card.expanded .team-bio {
+      display: block;
+      opacity: 1;
+    }
 
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: white;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .floating-notes {
-            position: absolute;
-            opacity: 0.2;
-            animation: float 15s infinite linear;
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-            }
-        }
-
-        section {
-            margin: 2rem 0;
-        }
-    </style>
+    .blur-others .team-card:not(.expanded) {
+      filter: blur(4px) brightness(0.7);
+      pointer-events: none;
+      transition: filter 0.3s ease;
+    }
+  </style>
 </head>
 <body class="font-sans">
-    <!-- Navigation -->
-    <nav class="bg-black/90 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-4">
-                    <i class="fas fa-music text-2xl text-white"></i>
-                    <a href="/" class="font-bold text-xl bg-gradient-to-r from-red-400 to-red-700 bg-clip-text text-transparent">Dunklin R-V Performing Arts</a>
-                    <i class="fas fa-theater-masks text-2xl text-white ml-2"></i>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <a href="/" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Home</a>
-                    <a href="/events/" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Events</a>
-                    <a href="/team/" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Team</a>
-                    <a href="/resources/" class="nav-link text-white hover:text-red-400 font-medium transition-colors duration-300">Resources</a>
-                </div>
-                <button class="md:hidden focus:outline-none text-white" id="mobile-menu-button">
-                    <i class="fas fa-bars text-2xl"></i>
-                </button>
-            </div>
-            <!-- Mobile menu -->
-            <div class="md:hidden hidden py-4" id="mobile-menu">
-                <a href="/" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Home</a>
-                <a href="/events/" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Events</a>
-                <a href="/team/" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Team</a>
-                <a href="/resources/" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Resources</a>
-            </div>
+  <nav class="bg-black/90 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center py-4">
+        <div class="flex items-center space-x-4">
+          <i class="fas fa-music text-2xl text-white"></i>
+          <a href="/" class="font-bold text-xl bg-gradient-to-r from-red-400 to-red-700 bg-clip-text text-transparent">
+            Dunklin R-V Performing Arts
+          </a>
+          <i class="fas fa-theater-masks text-2xl text-white ml-2"></i>
         </div>
-    </nav>
-
-       <!-- Meet the Team -->
-    <section id="team" class="py-16 px-4 bg-white bg-opacity-90">
-        <div class="container mx-auto">
-            <h2 class="text-3xl font-bold text-center mb-12 text-red-800">Meet Our Team</h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Team Cards -->
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
-                    <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://i.imgur.com/oi0rY6a.jpeg" alt="Andrew Brock" class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white py-2 text-center">
-                            <span class="text-sm font-semibold">Vocal</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl text-black font-bold mb-2">Andrew Brock</h3>
-                        <p class="text-red-800 font-semibold mb-6">Director of Choirs and Theater</p>
-                        <div class="flex space-x-3">
-                            <a href="mailto:abrock@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
-                    <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://i.imgur.com/GMrLcH3.jpeg" alt="Karissa Vernon" class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white py-2 text-center">
-                            <span class="text-sm font-semibold">Speech Pathologist</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl text-black font-bold mb-2">Karissa Vernon</h3>
-                        <p class="text-red-800 font-semibold mb-6">Theater Director</p>
-                        <div class="flex space-x-3">
-                            <a href="mailto:kvernon@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
-                    <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://i.imgur.com/wqrSUgv.jpeg" alt="Sam Van Dielen" class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white py-2 text-center">
-                            <span class="text-sm font-semibold">Special Text</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl text-black font-bold mb-2">Sam Van Dielen</h3>
-                        <p class="text-red-800 font-semibold mb-6">Band Director</p>
-                        <div class="flex space-x-3">
-                            <a href="mailto:svandielen@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
-                    <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://i.imgur.com/nIsZxMH.jpeg" alt="Ricka Fleschner" class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white py-2 text-center">
-                            <span class="text-sm font-semibold">Vocal</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl text-black font-bold mb-2">Ricka Fleschner</h3>
-                        <p class="text-red-800 font-semibold mb-6">3-5 Music Teacher</p>
-                        <div class="flex space-x-3">
-                            <a href="mailto:ffleschner@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="team-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
-                    <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
-                        <img src="https://i.imgur.com/SdNBIT2.jpeg" alt="Julie Pruett" class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white py-2 text-center">
-                            <span class="text-sm font-semibold">Piano</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl text-black font-bold mb-2">Julie Pruett</h3>
-                        <p class="text-red-800 font-semibold mb-6">K-2 Music Teacher</p>
-                        <div class="flex space-x-3">
-                            <a href="mailto:jpruett@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
+        <div class="hidden md:flex space-x-8">
+          <a href="/" class="nav-link text-white hover:text-red-400 font-medium">Home</a>
+          <a href="/events/" class="nav-link text-white hover:text-red-400 font-medium">Events</a>
+          <a href="/team/" class="nav-link text-white hover:text-red-400 font-medium">Team</a>
+          <a href="/resources/" class="nav-link text-white hover:text-red-400 font-medium">Resources</a>
         </div>
-    </section>
+        <button class="md:hidden focus:outline-none text-white" id="mobile-menu-button">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+      <div class="md:hidden hidden py-4" id="mobile-menu">
+        <a href="/" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Home</a>
+        <a href="/events/" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Events</a>
+        <a href="/team/" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Team</a>
+        <a href="/resources/" class="block py-3 px-4 hover:bg-gray-800 rounded-lg text-white font-medium">Resources</a>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Footer -->
-    <footer class="bg-black text-white py-12 px-4">
-        <div class="container mx-auto">
-            <div class="grid md:grid-cols-3 gap-8">
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Dunklin R-V Performing Arts</h3>
-                    <p class="text-gray-400 mb-4">Inspiring creativity, building community, and developing artistic excellence through choir, theater, and band.</p>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Quick Links</h3>
-                    <ul class="space-y-2">
-                        <li><a href="/" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                        <li><a href="/#social-feed" class="text-gray-400 hover:text-white transition duration-300">Live Social Feed</a></li>
-                        <li><a href="/events/" class="text-gray-400 hover:text-white transition duration-300">Upcoming Events</a></li>
-                        <li><a href="/team/" class="text-gray-400 hover:text-white transition duration-300">Meet the Team</a></li>
-                        <li><a href="/resources/" class="text-gray-400 hover:text-white transition duration-300">Resources</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-xl font-bold mb-4">Contact</h3>
-                    <p class="text-gray-400 mb-2 flex items-center">
-                        <i class="fas fa-map-marker-alt mr-2"></i>1 Blackcat Dr, Herculaneum, MO
-                    </p>
-                    <p class="text-gray-400 mb-2 flex items-center">
-                        <i class="fas fa-phone mr-2"></i>(636) 479-5200 ext. 4119
-                    </p>
-                    <p class="text-gray-400 mb-2 flex items-center">
-                        <i class="fas fa-envelope mr-2"></i>abrock@dunklin.k12.mo.us
-                    </p>
-                    <p class="text-gray-400 mt-4 text-sm">
-                        <i class="fas fa-clock mr-2"></i>Office Hours: M-F 10:00 AM - 11:00 AM
-                    </p>
-                </div>
+  <section id="team" class="py-16 px-4 bg-white bg-opacity-90">
+    <div class="container mx-auto">
+      <h2 class="text-3xl font-bold text-center mb-12 text-red-800">Meet Our Team</h2>
+      <div id="team-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
+            <img src="https://i.imgur.com/oi0rY6a.jpeg" alt="Andrew Brock" class="w-full h-full object-cover" />
+            <div class="absolute bottom-0 w-full bg-black bg-opacity-50 text-white py-2 text-center">
+              <span class="text-sm font-semibold">Vocal</span>
             </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-400">&copy; 2025 Dunklin R-V Performing Arts. All rights reserved.</p>
-                <div class="mt-4 md:mt-0">
-                    <a href="/privacypolicy/" class="text-gray-400 hover:text-white text-sm mr-4">Privacy Policy</a>
-                    <a href="/FAQ/" class="text-gray-400 hover:text-white text-sm">FAQ</a>
-                </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl text-black font-bold mb-2">Andrew Brock</h3>
+            <p class="text-red-800 font-semibold mb-6">Director of Choirs and Theater</p>
+            <div class="flex space-x-3">
+              <a href="mailto:abrock@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600">
+                <i class="fas fa-envelope"></i>
+              </a>
             </div>
+          </div>
+          <div class="team-bio">
+            <h4 class="text-xl font-bold mb-2">About Andrew Brock</h4>
+            <p>Andrew Brock has led our choir and theater programs since 2019, fostering musical excellence and creative collaboration. He holds a Master’s degree in Vocal Pedagogy and has directed award‑winning productions across southeast Missouri.</p>
+          </div>
         </div>
-    </footer>
 
-    <script>
-        // Mobile menu toggle
-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        });
+        <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
+            <img src="https://i.imgur.com/GMrLcH3.jpeg" alt="Karissa Vernon" class="w-full h-full object-cover" />
+            <div class="absolute bottom-0 w-full bg-black bg-opacity-50 text-white py-2 text-center">
+              <span class="text-sm font-semibold">Speech Pathologist</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl text-black font-bold mb-2">Karissa Vernon</h3>
+            <p class="text-red-800 font-semibold mb-6">Theater Director</p>
+            <div class="flex space-x-3">
+              <a href="mailto:kvernon@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+          <div class="team-bio">
+            <h4 class="text-xl font-bold mb-2">About Karissa Vernon</h4>
+            <p>Karissa blends her expertise as a speech pathologist with her passion for theater to create inclusive performances. She’s been with Dunklin R-V since 2020 and focuses on helping every student find their voice—both onstage and off.</p>
+          </div>
+        </div>
 
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href').startsWith('index.html#')) {
-                    e.preventDefault();
-                    window.location.href = this.getAttribute('href');
-                }
-            });
-        });
-    </script>
+        <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
+            <img src="https://i.imgur.com/wqrSUgv.jpeg" alt="Sam Van Dielen" class="w-full h-full object-cover" />
+            <div class="absolute bottom-0 w-full bg-black bg-opacity-50 text-white py-2 text-center">
+              <span class="text-sm font-semibold">Special Text</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl text-black font-bold mb-2">Sam Van Dielen</h3>
+            <p class="text-red-800 font-semibold mb-6">Band Director</p>
+            <div class="flex space-x-3">
+              <a href="mailto:svandielen@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+          <div class="team-bio">
+            <h4 class="text-xl font-bold mb-2">About Sam Van Dielen</h4>
+            <p>"My name is Sam Van Dielen, and this will be my first year at Dunklin R-5, but my sixth year of teaching! All of my teaching experience is with 6-12 band programs like ours, and I grew up in South County, where I attended Lindbergh Schools. My main instrument is tuba, but my first primary instrument back in 6th grade was the clarinet. Over the last 10 years I’ve put a huge emphasis on learning percussion, and I’m proud to have strong chops teaching & performing each of the three families in any Band.
+In 2019 I graduated from Missouri State University, where I was a part of the PRIDE Marching Band, Symphonic Band, Concert Band, Community Band, and a handful of small ensembles. During my time at MSU I was also a member of the Colts Drum & Bugle Corps, where I played tuba, baritone, and euphonium in separate years. Since aging out in 2017, I’ve spent a lot of time adjudicating, clinicing small and large bands, and teaching drum corps too. Last year I founded the Community Chamber Winds in Springfield, which is like a band, but with only 8-15 musicians. Music is a huge part of my life, and I feel lucky to be in this profession, serving folks like you.
+Aside from music and teaching, I’ve got a cat named Beany at home, I love kayaking, backpacking, and road trips, I like to work on my car, and I enjoy gaming on the PC I built a couple years ago. My family still lives in St. Louis, and it’s great to be closer to them!"</p>
+          </div>
+        </div>
+
+        <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
+            <img src="https://i.imgur.com/nIsZxMH.jpeg" alt="Ricka Fleschner" class="w-full h-full object-cover" />
+            <div class="absolute bottom-0 w-full bg-black bg-opacity-50 text-white py-2 text-center">
+              <span class="text-sm font-semibold">Vocal</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl text-black font-bold mb-2">Ricka Fleschner</h3>
+            <p class="text-red-800 font-semibold mb-6">3-5 Music Teacher</p>
+            <div class="flex space-x-3">
+              <a href="mailto:ffleschner@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+          <div class="team-bio">
+            <h4 class="text-xl font-bold mb-2">About Ricka Fleschner</h4>
+            <p>Ricka Fleschner brings joy and creativity to our youngest musicians. As our 3–5 Music Teacher, she designs engaging lessons that build fundamentals while sparking lifelong love of music.</p>
+          </div>
+        </div>
+
+        <div class="team-card bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
+            <img src="https://i.imgur.com/SdNBIT2.jpeg" alt="Julie Pruett" class="w-full h-full object-cover" />
+            <div class="absolute bottom-0 w-full bg-black bg-opacity-50 text-white py-2 text-center">
+              <span class="text-sm font-semibold">Piano</span>
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl text-black font-bold mb-2">Julie Pruett</h3>
+            <p class="text-red-800 font-semibold mb-6">K-2 Music Teacher</p>
+            <div class="flex space-x-3">
+              <a href="mailto:jpruett@dunklin.k12.mo.us" class="text-red-800 hover:text-red-600">
+                <i class="fas fa-envelope"></i>
+              </a>
+            </div>
+          </div>
+          <div class="team-bio">
+            <h4 class="text-xl font-bold mb-2">About Julie Pruett</h4>
+            <p>Julie Pruett nurtures our youngest learners with playful, piano‑based activities. Her K–2 curriculum builds confidence, coordination, and a strong musical foundation in every child.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-black text-white py-12 px-4">
+    <div class="container mx-auto">
+      <div class="grid md:grid-cols-3 gap-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">Dunklin R-V Performing Arts</h3>
+          <p class="text-gray-400 mb-4">Inspiring creativity, building community, and developing artistic excellence through choir, theater, and band.</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+          <ul class="space-y-2">
+            <li><a href="/" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+            <li><a href="/#social-feed" class="text-gray-400 hover:text-white transition duration-300">Live Social Feed</a></li>
+            <li><a href="/events/" class="text-gray-400 hover:text-white transition duration-300">Upcoming Events</a></li>
+            <li><a href="/team/" class="text-gray-400 hover:text-white transition duration-300">Meet the Team</a></li>
+            <li><a href="/resources/" class="text-gray-400 hover:text-white transition duration-300">Resources</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">Contact</h3>
+          <p class="text-gray-400 mb-2 flex items-center">
+            <i class="fas fa-map-marker-alt mr-2"></i>1 Blackcat Dr, Herculaneum, MO
+          </p>
+          <p class="text-gray-400 mb-2 flex items-center">
+            <i class="fas fa-phone mr-2"></i>(636) 479-5200 ext. 4119
+          </p>
+          <p class="text-gray-400 mb-2 flex items-center">
+            <i class="fas fa-envelope mr-2"></i>abrock@dunklin.k12.mo.us
+          </p>
+          <p class="text-gray-400 mt-4 text-sm">
+            <i class="fas fa-clock mr-2"></i>Office Hours: M-F 10:00 AM - 11:00 AM
+          </p>
+        </div>
+      </div>
+      <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-gray-400">&copy; 2025 Dunklin R-V Performing Arts. All rights reserved.</p>
+        <div class="mt-4 md:mt-0">
+          <a href="/privacypolicy/" class="text-gray-400 hover:text-white text-sm mr-4">Privacy Policy</a>
+          <a href="/FAQ/" class="text-gray-400 hover:text-white text-sm">FAQ</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('mobile-menu-button').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    const grid = document.getElementById('team-grid');
+    const cards = grid.querySelectorAll('.team-card');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        const wasExpanded = card.classList.contains('expanded');
+        cards.forEach(c => c.classList.remove('expanded'));
+        grid.classList.remove('blur-others');
+        if (!wasExpanded) {
+          card.classList.add('expanded');
+          grid.classList.add('blur-others');
+          card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
