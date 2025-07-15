@@ -131,7 +131,7 @@
           </div>
           <div class="team-bio">
             <h4 class="text-xl font-bold mb-2">About Andrew Brock</h4>
-            <p>Andrew Brock has led our choir and theater programs since 2019, fostering musical excellence and creative collaboration. He holds a Master’s degree in Vocal Pedagogy and has directed award‑winning productions across southeast Missouri.</p>
+            <p>Filler Text</p>
           </div>
         </div>
 
@@ -153,7 +153,7 @@
           </div>
           <div class="team-bio">
             <h4 class="text-xl font-bold mb-2">About Karissa Vernon</h4>
-            <p>Karissa blends her expertise as a speech pathologist with her passion for theater to create inclusive performances. She’s been with Dunklin R-V since 2020 and focuses on helping every student find their voice—both onstage and off.</p>
+            <p>Filler Text</p>
           </div>
         </div>
 
@@ -161,7 +161,7 @@
           <div class="h-64 bg-red-800 flex items-center justify-center relative overflow-hidden">
             <img src="https://i.imgur.com/wqrSUgv.jpeg" alt="Sam Van Dielen" class="w-full h-full object-cover" />
             <div class="absolute bottom-0 w-full bg-black bg-opacity-50 text-white py-2 text-center">
-              <span class="text-sm font-semibold">Special Text</span>
+              <span class="text-sm font-semibold">6-12 Band</span>
             </div>
           </div>
           <div class="p-6">
@@ -199,7 +199,7 @@ Aside from music and teaching, I’ve got a cat named Beany at home, I love kaya
           </div>
           <div class="team-bio">
             <h4 class="text-xl font-bold mb-2">About Ricka Fleschner</h4>
-            <p>Ricka Fleschner brings joy and creativity to our youngest musicians. As our 3–5 Music Teacher, she designs engaging lessons that build fundamentals while sparking lifelong love of music.</p>
+            <p>Filler text</p>
           </div>
         </div>
 
@@ -221,7 +221,7 @@ Aside from music and teaching, I’ve got a cat named Beany at home, I love kaya
           </div>
           <div class="team-bio">
             <h4 class="text-xl font-bold mb-2">About Julie Pruett</h4>
-            <p>Julie Pruett nurtures our youngest learners with playful, piano‑based activities. Her K–2 curriculum builds confidence, coordination, and a strong musical foundation in every child.</p>
+            <p>Filler text</p>
           </div>
         </div>
       </div>
@@ -239,9 +239,9 @@ Aside from music and teaching, I’ve got a cat named Beany at home, I love kaya
           <h3 class="text-xl font-bold mb-4">Quick Links</h3>
           <ul class="space-y-2">
             <li><a href="/" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-            <li><a href="/#social-feed" class="text-gray-400 hover:text-white transition duration-300">Live Social Feed</a></li>
+            <li><a href="/#social-feed" class="text-gray-400 hover=text-white transition duration-300">Live Social Feed</a></li>
             <li><a href="/events/" class="text-gray-400 hover:text-white transition duration-300">Upcoming Events</a></li>
-            <li><a href="/team/" class="text-gray-400 hover:text-white transition duration-300">Meet the Team</a></li>
+            <li><a href="/team/" class="text-gray-400 hover=text-white transition duration-300">Meet the Team</a></li>
             <li><a href="/resources/" class="text-gray-400 hover:text-white transition duration-300">Resources</a></li>
           </ul>
         </div>
@@ -264,14 +264,15 @@ Aside from music and teaching, I’ve got a cat named Beany at home, I love kaya
       <div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
         <p class="text-gray-400">&copy; 2025 Dunklin R-V Performing Arts. All rights reserved.</p>
         <div class="mt-4 md:mt-0">
-          <a href="/privacypolicy/" class="text-gray-400 hover:text-white text-sm mr-4">Privacy Policy</a>
-          <a href="/FAQ/" class="text-gray-400 hover:text-white text-sm">FAQ</a>
+          <a href="/privacypolicy/" class="text-gray-400 hover=text-white text-sm mr-4">Privacy Policy</a>
+          <a href="/FAQ/" class="text-gray-400 hover=text-white text-sm">FAQ</a>
         </div>
       </div>
     </div>
   </footer>
 
   <script>
+    // Mobile menu toggle
     document.getElementById('mobile-menu-button').addEventListener('click', () => {
       document.getElementById('mobile-menu').classList.toggle('hidden');
     });
@@ -280,7 +281,8 @@ Aside from music and teaching, I’ve got a cat named Beany at home, I love kaya
     const cards = grid.querySelectorAll('.team-card');
 
     cards.forEach(card => {
-      card.addEventListener('click', () => {
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
         const wasExpanded = card.classList.contains('expanded');
         cards.forEach(c => c.classList.remove('expanded'));
         grid.classList.remove('blur-others');
@@ -290,6 +292,13 @@ Aside from music and teaching, I’ve got a cat named Beany at home, I love kaya
           card.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }
       });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.team-card')) {
+        cards.forEach(c => c.classList.remove('expanded'));
+        grid.classList.remove('blur-others');
+      }
     });
   </script>
 </body>
